@@ -6,38 +6,30 @@ public class RatMovement : MonoBehaviour
 {
     public float movementSpeed = 5;
     public float jumpHeight = 350;
+    public float maxRatSize = 5;
+    public float ratGrowSpeed = 2;
 
     private Rigidbody2D rb;
+    private Vector3 ratSize = new Vector3(0, 0, 0);
     private bool canJump = false;
-    private float currentX = 1.0f;
+    private float currentX = -1.0f;
     private float switchDirectionTimer;
-    private float jumpTimer;
+    private bool canMove = false; //Movement is only enabled if rat has grown
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
 
-        RandomJumpTimer();
         RandomDirectionTimer();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Moving
-        rb.velocity = new Vector2(currentX * movementSpeed, rb.velocity.y);
-        if (switchDirectionTimer <= 0.0f) {
-            currentX *= -1.0f;
-            RandomDirectionTimer();
-        }
-
-        // Jumping
-        if (jumpTimer <= 0.0f) {
-            canJump = false;
-            rb.AddForce(Vector2.up * jumpHeight);
-            RandomJumpTimer();
-        }
+        Movement();
+        //Jump();
+        GrowRat();
 
         UpdateTimers();
     }
@@ -60,13 +52,50 @@ public class RatMovement : MonoBehaviour
         }
     }
 
-    private void UpdateTimers() {
-        switchDirectionTimer -= Time.deltaTime;
-        jumpTimer -= Time.deltaTime;
+    private void Movement() {
+        if (!canMove) {
+            return;
+        }
+
+        rb.velocity = new Vector2(currentX * movementSpeed, rb.velocity.y);
+        if (switchDirectionTimer <= 0.0f)
+        {
+            currentX *= -1.0f;
+            RandomDirectionTimer();
+        }
+
+        if(currentX > 0) {
+            rb.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else if(currentX < 0) {
+            rb.gameObject.GetComponent<SpriteRenderer>().flipX = false;
+        }
     }
 
-    private void RandomJumpTimer() {
-        jumpTimer = Random.Range(2.0f, 10.0f);
+    private void Jump() {
+        canJump = false;
+        rb.AddForce(Vector2.up * jumpHeight);
+    }
+
+    private void GrowRat() {
+        if (canMove) {
+            return;
+        }
+
+        Vector3 currSize = rb.transform.localScale;
+
+        if (currSize.x < maxRatSize)
+        {
+            float size = currSize.x + Time.deltaTime;
+            rb.transform.localScale = new Vector3(size, size, size);
+        }
+        else {
+            canMove = true;
+        }
+    }
+
+    private void UpdateTimers() {
+        switchDirectionTimer -= Time.deltaTime;
     }
 
     private void RandomDirectionTimer() {
