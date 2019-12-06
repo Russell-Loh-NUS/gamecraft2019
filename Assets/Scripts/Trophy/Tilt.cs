@@ -41,14 +41,6 @@ public class Tilt : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) {
-            toppleLeft(5);
-        }
-
-        if (Input.GetMouseButtonDown(1)) {
-            toppleRight(5);
-        }
-
         StartCoroutine(checkIfTrophyMoving());
         toggleIsFallen();
 
