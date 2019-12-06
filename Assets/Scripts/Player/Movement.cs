@@ -4,45 +4,64 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public float movementSpeed;
-    public float jumpHeight;
-    private Rigidbody2D rb;
-    private bool canJump = false;
+    public Transform[] positions = new Transform[6];
+    private int currentPos = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        MovePlayer();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Use user defined inputs for movement
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        bool jump = Input.GetButton("Jump");
+        PositionMovement();
+        MouseMovement();
+    }
 
-        // Moving
-        rb.velocity = new Vector2(horizontal * movementSpeed, rb.velocity.y);
+    private void PositionMovement() {
+        if (Input.GetButtonDown("Right"))
+        {
+            if (currentPos < (positions.Length - 1))
+            {
+                currentPos++;
+                MovePlayer();
+            }
 
-        // Jumping
-        if (jump && canJump) {
-            canJump = false;
-            rb.AddForce(Vector2.up * jumpHeight);
+
+        }
+        else if (Input.GetButtonDown("Left"))
+        {
+            if (currentPos > 0)
+            {
+                currentPos--;
+                MovePlayer();
+            }
         }
     }
 
-    void OnCollisionEnter2D(Collision2D col)
-    {
-        if (col.gameObject.CompareTag("Floor")) {
-            canJump = true;
+    private void MouseMovement() {
+        bool playerOnLeft = (currentPos % 2) == 0;
+        if (Input.GetAxis("Mouse X") > 0 && playerOnLeft)
+        {
+            //Right
+        }
+
+        if (Input.GetAxis("Mouse X") < 0 && !playerOnLeft)
+        {
+            //Left
         }
     }
 
-    void OnCollisionExit2D(Collision2D col)
-    {
-        if (col.gameObject.CompareTag("Floor")) {
-            canJump = false;
+    private void MovePlayer() {
+        if((currentPos % 2) == 0) {
+            gameObject.GetComponent<SpriteRenderer>().flipX = false;
         }
+        else {
+            gameObject.GetComponent<SpriteRenderer>().flipX = true;
+        }
+
+        gameObject.transform.position = positions[currentPos].position;
     }
 }
