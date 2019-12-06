@@ -41,6 +41,7 @@ public class GameTimer : MonoBehaviour
         {
             isTimerStarted = false;
             Manager.Instance.isGameStarted = false;
+            manager.GameEnd();
             CancelInvoke();
         }
     }

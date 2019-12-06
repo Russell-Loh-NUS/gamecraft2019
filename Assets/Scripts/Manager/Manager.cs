@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Manager : Singleton<Manager>
 {
@@ -8,6 +9,8 @@ public class Manager : Singleton<Manager>
     public GameObject GUI;
     public Blindness blindness;
     public Spawner spawner;
+    public GameObject resultPanel;
+    public Text resultText;
 
     private int currDifficulty = 0;
 
@@ -39,5 +42,12 @@ public class Manager : Singleton<Manager>
         spawner.SetRate(spawnRate - 1.0f);
 
         currDifficulty++;
+    }
+
+    public void GameEnd() {
+        resultText.text = "Your shift is secured!\nAt least for now...";
+        blindness.canBlind = false;
+        spawner.canSpawn = false;
+        resultPanel.SetActive(true);
     }
 }

@@ -7,6 +7,7 @@ public class Spawner : MonoBehaviour
     public GameObject rat;
     public GameObject ratSpawn;
     public float ratsSpawnRate = 15.0f;
+    public bool canSpawn = true;
 
     private float ratsSpawnTimer = 15.0f;
 
@@ -20,7 +21,7 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(ratsSpawnTimer <= 0.0f) {
+        if(ratsSpawnTimer <= 0.0f && canSpawn) {
             Instantiate(rat, ratSpawn.transform.position, Quaternion.identity)
             .transform.SetParent(ratSpawn.transform);
 
