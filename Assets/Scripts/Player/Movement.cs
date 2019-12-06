@@ -5,11 +5,13 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     public Transform[] positions = new Transform[6];
+    private AudioSource movementSound;
     private int currentPos = 0;
 
     // Start is called before the first frame update
     void Start()
     {
+        movementSound = GetComponent<AudioSource>();
         MovePlayer();
     }
 
@@ -27,6 +29,7 @@ public class Movement : MonoBehaviour
             {
                 currentPos++;
                 MovePlayer();
+                movementSound.Play();
             }
 
 
@@ -37,6 +40,7 @@ public class Movement : MonoBehaviour
             {
                 currentPos--;
                 MovePlayer();
+                movementSound.Play();
             }
         }
     }
