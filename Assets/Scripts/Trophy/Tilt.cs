@@ -10,15 +10,19 @@ public class Tilt : MonoBehaviour
     GameObject rightCircle;
     GameObject leftCircle;
 
+    public float force = 50000;
+
     //game componenets
     private Rigidbody2D trophyRigid;
 
     //attributes
     private Vector2 topLeft;
     private Vector2 topRight;
-    private float force = 100;
     private Vector2 originalPosition;
+
+    //flag
     private bool isMoving;
+    private bool isFallen;
 
     private void Start() {
         trophy = gameObject;
@@ -30,20 +34,23 @@ public class Tilt : MonoBehaviour
 
         originalPosition = trophy.transform.position;
 
+        //default values
+        isFallen = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButtonDown(0)) {
-            toppleLeft();
+            toppleLeft(5);
         }
 
         if (Input.GetMouseButtonDown(1)) {
-            toppleRight();
+            toppleRight(5);
         }
 
         StartCoroutine(checkIfTrophyMoving());
+        toggleIsFallen();
 
         //if it is not moving, rectify the position to original
         if (!isMoving) {
@@ -51,33 +58,32 @@ public class Tilt : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision) 
-    {
-        if (collision.gameObject.CompareTag("Player")) {
-            Debug.Log("Collide");
+    public void toppleLeft(int noOfHit) {
+        for (int i = 0; i < noOfHit; i++) {
+            Rigidbody2D rigid2D = rightCircle.GetComponent<Rigidbody2D>();
+            Vector2 rightCircleVector = rigid2D.transform.position;
+
+            trophyRigid.AddForceAtPosition(rightCircleVector * force, rightCircleVector);
+
+            isMoving = true;
         }
     }
 
-    void toppleLeft() {
-        Rigidbody2D rigid2D = rightCircle.GetComponent<Rigidbody2D>();
-        Vector2 rightCircleVector = rigid2D.transform.position;
+    public void toppleRight(int noOfHit) {
+        for (int i = 0; i < noOfHit; i++) {
+            Rigidbody2D rigid2D = leftCircle.GetComponent<Rigidbody2D>();
+            Vector2 leftCircleVector = rigid2D.transform.position;
 
-        trophyRigid.AddForceAtPosition(rightCircleVector * force, rightCircleVector);
+            trophyRigid.AddForceAtPosition(-leftCircleVector * force, leftCircleVector);
 
-        isMoving = true;
-    }
-
-    void toppleRight() {
-        Rigidbody2D rigid2D = leftCircle.GetComponent<Rigidbody2D>();
-        Vector2 leftCircleVector = rigid2D.transform.position;
-
-        trophyRigid.AddForceAtPosition(-leftCircleVector * force, leftCircleVector);
-
-        isMoving = true;
+            isMoving = true;
+        }
     }
 
     void rectifyTrophyPosition() {
-        trophy.transform.position = Vector2.Lerp(trophy.transform.position, originalPosition, 0.5f);
+        if (!isFallen) {
+            trophy.transform.position = Vector2.Lerp(trophy.transform.position, originalPosition, 0.5f);
+        }
     }
 
     IEnumerator checkIfTrophyMoving() {
@@ -87,5 +93,15 @@ public class Tilt : MonoBehaviour
         var p2 = transform.position;
 
         isMoving = (p1 != p2);
+    }
+
+    void toggleIsFallen() {
+        float z = trophy.transform.rotation.eulerAngles.z;
+
+        if ((z >= 0 && z <= 45) || (z <= 360 && z >= 315)) {
+            isFallen = false;
+        } else {
+            isFallen = true;
+        }
     }
 }

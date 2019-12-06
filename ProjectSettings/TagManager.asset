@@ -7,6 +7,7 @@ TagManager:
   - Floor
   - Wall
   - Trophy
+  - Rat
   layers:
   - Default
   - TransparentFX
