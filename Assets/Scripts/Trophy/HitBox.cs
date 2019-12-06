@@ -20,6 +20,7 @@ public class HitBox : MonoBehaviour
         Tilt parentScript = this.transform.parent.GetComponent<Tilt>();
 
         if (col.gameObject.CompareTag("Rat")) {
+            //Destroy(col.gameObject);
             if (gameObject.name == "LeftRectangle") {
                 parentScript.toppleRight(18);
             }
