@@ -7,6 +7,7 @@ public class GameTimer : MonoBehaviour
 {
     public int timer = 60;
     public Text timerText;
+    public Manager manager;
 
     private bool isTimerStarted;
     // Start is called before the first frame update
@@ -32,7 +33,10 @@ public class GameTimer : MonoBehaviour
         {
             timer -= 1;
             timerText.text = timer + " seconds";
-            Debug.Log("timer =" + timer);
+
+            if(timer % 10 == 0) {
+                manager.IncreaseDifficulty();
+            }
         }
         else
         {

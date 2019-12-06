@@ -30,6 +30,14 @@ public class Spawner : MonoBehaviour
         UpdateTimers();
     }
 
+    public void SetRate(float rate) {
+        ratsSpawnRate = rate;
+    }
+
+    public float GetRate() {
+        return this.ratsSpawnRate;
+    }
+
     private void SpawnFirstMonsters() {
         Instantiate(rat, ratSpawn.transform.position, Quaternion.identity)
             .transform.SetParent(ratSpawn.transform);
