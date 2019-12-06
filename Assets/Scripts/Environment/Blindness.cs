@@ -24,9 +24,9 @@ public class Blindness : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(startBlindnessTimer > 0.0f && startBlindnessTimer <= 2.0f && !isBlind) {
+        if(startBlindnessTimer > 0.0f && startBlindnessTimer <= 1.0f && !isBlind) {
             if (blinkTimer <= 0.0f) {
-                blinkTimer = Random.Range(blinkRate, blinkRate + 0.3f);
+                blinkTimer = Random.Range(blinkRate, blinkRate + 0.15f);
                 directionalLight.SetActive(!directionalLight.activeSelf);
             }
         }
