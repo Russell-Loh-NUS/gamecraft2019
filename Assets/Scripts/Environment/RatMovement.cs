@@ -8,6 +8,7 @@ public class RatMovement : MonoBehaviour
     public float jumpHeight = 350;
     public float maxRatSize = 5;
     public float ratGrowSpeed = 2;
+    public AudioSource jumpSound;
 
     private Rigidbody2D rb;
     private Vector3 ratSize = new Vector3(0, 0, 0);
@@ -20,7 +21,7 @@ public class RatMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-
+        jumpSound = GetComponent<AudioSource>();
         RandomDirectionTimer();
     }
 
@@ -75,6 +76,7 @@ public class RatMovement : MonoBehaviour
     private void Jump() {
         canJump = false;
         rb.AddForce(Vector2.up * jumpHeight);
+        jumpSound.Play();
     }
 
     private void GrowRat() {
