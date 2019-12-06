@@ -42,13 +42,11 @@ public class RatMovement : MonoBehaviour
     {
 
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up);
-        //Debug.Log("Hit: " + hit.collider.CompareTag("Trophy") + ", Timer: " + targetTimer + ", Position: " + (Mathf.Abs(target.transform.position.x - transform.position.x) < 2));
         if (!hit.collider.CompareTag("Trophy")
                 && targetTimer <= 0.0f
                 && Mathf.Abs(target.transform.position.x - transform.position.x) < 1.5f
                 && canJump)
         {
-            Debug.Log("JUMP");
             Jump();
         }
     }
