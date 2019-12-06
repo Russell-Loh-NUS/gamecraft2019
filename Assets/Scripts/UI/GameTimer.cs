@@ -14,7 +14,7 @@ public class GameTimer : MonoBehaviour
     void Start()
     {
         isTimerStarted = false;
-        timerText.text = "60 seconds";
+        timerText.text = "Next shift: 60 seconds";
     }
 
     // Update is called once per frame
@@ -32,9 +32,8 @@ public class GameTimer : MonoBehaviour
         if (timer > 0)
         {
             timer -= 1;
-            timerText.text = timer + " seconds";
-
-            if(timer % 10 == 0) {
+            timerText.text = "Next shift: " + timer + " seconds";
+            if (timer % 10 == 0) {
                 manager.IncreaseDifficulty();
             }
         }
