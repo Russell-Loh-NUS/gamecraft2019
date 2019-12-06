@@ -10,7 +10,7 @@ public class Tilt : MonoBehaviour
     GameObject rightCircle;
     GameObject leftCircle;
 
-    public float force = 50000;
+    public float force = 1000000;
 
     //game componenets
     private Rigidbody2D trophyRigid;
