@@ -634,12 +634,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 799353897}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2cbf70d847a2f4514a574e3a864877bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   directionalLight: {fileID: 794657551}
+  blinkRate: 0.1
 --- !u!4 &799353899
 Transform:
   m_ObjectHideFlags: 0
