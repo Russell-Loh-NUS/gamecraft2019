@@ -20,7 +20,7 @@ public class GameTimer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Manager.Instance.isGameStarted && !isTimerStarted) {
+        if (manager.isGameStarted && !isTimerStarted) {
             InvokeRepeating("decreaseTimer", 1.0f, 1.0f);
             isTimerStarted = true;
         }
@@ -40,7 +40,7 @@ public class GameTimer : MonoBehaviour
         else
         {
             isTimerStarted = false;
-            Manager.Instance.isGameStarted = false;
+            manager.isGameStarted = false;
             manager.GameEnd();
             CancelInvoke();
         }
