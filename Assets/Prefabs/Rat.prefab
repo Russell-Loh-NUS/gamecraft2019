@@ -119,8 +119,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 5
   jumpHeight: 350
-  maxRatSize: 5
+  maxRatSize: 3
   ratGrowSpeed: 4
+  jumpSound: {fileID: 0}
 --- !u!95 &2091335755263788155
 Animator:
   serializedVersion: 3
