@@ -13,12 +13,14 @@ public class Manager : Singleton<Manager>
     public Text resultText;
 
     private int currDifficulty = 0;
+    private AudioSource bgMusic;
 
     // Start is called before the first frame update
     void Start()
     {
         isGameStarted = false;
         GUI.SetActive(false);
+        bgMusic = GameObject.Find("BackgroundMusic").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -49,5 +51,6 @@ public class Manager : Singleton<Manager>
         blindness.canBlind = false;
         spawner.canSpawn = false;
         resultPanel.SetActive(true);
+        bgMusic.Stop();
     }
 }
