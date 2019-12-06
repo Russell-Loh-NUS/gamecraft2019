@@ -8,6 +8,7 @@ public class RatMovement : MonoBehaviour
     public float jumpHeight = 350;
     public float maxRatSize = 5;
     public float ratGrowSpeed = 2;
+    public GameObject[] targets = new GameObject[3];
     public AudioSource jumpSound;
 
     private Rigidbody2D rb;
@@ -15,6 +16,8 @@ public class RatMovement : MonoBehaviour
     private bool canJump = false;
     private float currentX = -1.0f;
     private float switchDirectionTimer;
+    private float targetTimer;
+    private GameObject target;
     private bool canMove = false; //Movement is only enabled if rat has grown
 
     // Start is called before the first frame update
@@ -23,16 +26,31 @@ public class RatMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         jumpSound = GetComponent<AudioSource>();
         RandomDirectionTimer();
+        RandomTargetTimer();
+        target = targets[Random.Range(0, 2)];
     }
 
     // Update is called once per frame
     void Update()
     {
         Movement();
-        //Jump();
         GrowRat();
 
         UpdateTimers();
+    }
+    void FixedUpdate()
+    {
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up);
+        //Debug.Log("Hit: " + hit.collider.CompareTag("Trophy") + ", Timer: " + targetTimer + ", Position: " + (Mathf.Abs(target.transform.position.x - transform.position.x) < 2));
+        if (!hit.collider.CompareTag("Trophy")
+                && targetTimer <= 0.0f
+                && Mathf.Abs(target.transform.position.x - transform.position.x) < 1.5f
+                && canJump)
+        {
+            Debug.Log("JUMP");
+            Jump();
+        }
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -98,9 +116,14 @@ public class RatMovement : MonoBehaviour
 
     private void UpdateTimers() {
         switchDirectionTimer -= Time.deltaTime;
+        targetTimer -= Time.deltaTime;
     }
 
     private void RandomDirectionTimer() {
         switchDirectionTimer = Random.Range(4.0f, 10.0f);
+    }
+
+    private void RandomTargetTimer() {
+        targetTimer = Random.Range(2.0f, 5.0f);
     }
 }

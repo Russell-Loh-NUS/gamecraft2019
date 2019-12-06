@@ -96,7 +96,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.0001
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -117,10 +117,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2634e7aa1c344b339fa6287650ec11c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 5
-  jumpHeight: 350
+  movementSpeed: 3
+  jumpHeight: 250
   maxRatSize: 3
   ratGrowSpeed: 4
+  targets:
+  - {fileID: 2577115864685063455, guid: 89c9fc0ef9e03aa4b8cf559419c7efb0, type: 3}
+  - {fileID: 7194213749636374241, guid: f5640eb40451a2d4dac1af77fc160009, type: 3}
+  - {fileID: 6078963328331878299, guid: 2bb5c4e617eb8604c91769b136630fb2, type: 3}
   jumpSound: {fileID: 0}
 --- !u!95 &2091335755263788155
 Animator:
