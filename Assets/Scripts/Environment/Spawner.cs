@@ -14,6 +14,7 @@ public class Spawner : MonoBehaviour
     void Start()
     {
         ratsSpawnTimer = ratsSpawnRate;
+        SpawnFirstMonsters();
     }
 
     // Update is called once per frame
@@ -27,6 +28,11 @@ public class Spawner : MonoBehaviour
         }
 
         UpdateTimers();
+    }
+
+    private void SpawnFirstMonsters() {
+        Instantiate(rat, ratSpawn.transform.position, Quaternion.identity)
+            .transform.SetParent(ratSpawn.transform);
     }
 
     private void UpdateTimers() {
