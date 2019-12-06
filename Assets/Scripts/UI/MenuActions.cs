@@ -13,6 +13,7 @@ public class MenuActions : MonoBehaviour
         blindness.enabled = true;
         spawner.enabled = true;
         menuPanel.SetActive(false);
+        Manager.Instance.isGameStarted = true;
     }
 
     public void ExitGame()
