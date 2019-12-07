@@ -702,5 +702,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trophy: {fileID: 6078963328331878299}
-  force: 5000
+  force: 5500
   isFallen: 0
