@@ -14,6 +14,8 @@ public class Manager : Singleton<Manager>
 
     private int currDifficulty = 0;
     private AudioSource bgMusic;
+    private AudioSource winMusic;
+    private AudioSource loseMusic;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +23,8 @@ public class Manager : Singleton<Manager>
         isGameStarted = false;
         GUI.SetActive(false);
         bgMusic = GameObject.Find("BackgroundMusic").GetComponent<AudioSource>();
+        winMusic = GameObject.Find("WinMusic").GetComponent<AudioSource>();
+        loseMusic = GameObject.Find("LoseMusic").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -52,5 +56,6 @@ public class Manager : Singleton<Manager>
         spawner.canSpawn = false;
         resultPanel.SetActive(true);
         bgMusic.Stop();
+        winMusic.Play();
     }
 }
