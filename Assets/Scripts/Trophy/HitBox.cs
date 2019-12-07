@@ -21,7 +21,9 @@ public class HitBox : MonoBehaviour
         Tilt parentScript = this.transform.parent.GetComponent<Tilt>();
 
         if (col.gameObject.CompareTag("Rat")) {
-            Destroy(col.gameObject);
+            col.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+            col.gameObject.transform.GetChild(0).GetComponent<AudioSource>().Play();
+            Destroy(col.gameObject, 0.4f);
             if (gameObject.name == "LeftRectangle") {
                 parentScript.toppleRightByRat(47000);
             }

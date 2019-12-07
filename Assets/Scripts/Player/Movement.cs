@@ -8,6 +8,8 @@ public class Movement : MonoBehaviour
 
     public Transform[] positions = new Transform[6];
     private AudioSource movementSound;
+    private AudioSource pushSound;
+    private GameObject pushEffect;
     private int currentPos = 0;
 
 
@@ -15,6 +17,8 @@ public class Movement : MonoBehaviour
     void Start()
     {
         movementSound = GetComponent<AudioSource>();
+        pushSound = gameObject.transform.GetChild(0).GetComponent<AudioSource>();
+        pushEffect = gameObject.transform.GetChild(0).gameObject;
         MovePlayer();
     }
 
@@ -52,6 +56,7 @@ public class Movement : MonoBehaviour
         bool playerOnLeft = (currentPos % 2) == 0;
         if (Input.GetAxis("Mouse X") > 0 && playerOnLeft && Input.GetMouseButtonDown(0))
         {
+            pushEffect.SetActive(true);
             //trophy move right
             if (currentPos == 0) {
                 //get the first trophy and topple right
