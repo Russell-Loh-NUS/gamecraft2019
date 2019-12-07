@@ -11,6 +11,7 @@ public class Manager : Singleton<Manager>
     public Spawner spawner;
     public GameObject resultPanel;
     public Text resultText;
+    public Tilt[] trophiesTilt = new Tilt[3];
 
     private int currDifficulty = 0;
     private AudioSource bgMusic;
@@ -26,7 +27,7 @@ public class Manager : Singleton<Manager>
         bgMusic = GameObject.Find("BackgroundMusic").GetComponent<AudioSource>();
         winMusic = GameObject.Find("WinMusic").GetComponent<AudioSource>();
         loseMusic = GameObject.Find("LoseMusic").GetComponent<AudioSource>();
-        isWin = false;
+        isWin = true;
     }
 
     // Update is called once per frame
@@ -34,6 +35,16 @@ public class Manager : Singleton<Manager>
     {
         if (isGameStarted) {
             GUI.SetActive(true);
+
+            for (int i = 0; i < trophiesTilt.Length; i++)
+            {
+                if (trophiesTilt[i].isFallen)
+                {
+                    isWin = false;
+                    GameEnd();
+                    break;
+                }
+            }
         }
     }
 
@@ -53,17 +64,23 @@ public class Manager : Singleton<Manager>
     }
 
     public void GameEnd() {
+        if (!isGameStarted) {
+            return;
+        }
+
+        bgMusic.Stop();
         if (isWin)
         {
             resultText.text = "Your shift is secured!\nAt least for now...";
+            winMusic.Play();
         }
         else {
             resultText.text = "The sacred treasures were destroyed! You're FIRED!";
+            loseMusic.Play();
         }
         blindness.canBlind = false;
         spawner.canSpawn = false;
         resultPanel.SetActive(true);
-        bgMusic.Stop();
-        winMusic.Play();
+        isGameStarted = false;
     }
 }

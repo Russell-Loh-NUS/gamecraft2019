@@ -31,6 +31,10 @@ public class GameTimer : MonoBehaviour
     void decreaseTimer() {
         if (timer > 0)
         {
+            if (!manager.isGameStarted) {
+                return;
+            }
+
             timer -= 1;
             timerText.text = "Next shift: " + timer + " seconds";
             if (timer % 10 == 0) {
@@ -40,7 +44,6 @@ public class GameTimer : MonoBehaviour
         else
         {
             isTimerStarted = false;
-            manager.isGameStarted = false;
             manager.GameEnd();
             CancelInvoke();
         }

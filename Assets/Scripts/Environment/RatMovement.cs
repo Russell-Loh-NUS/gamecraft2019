@@ -53,10 +53,12 @@ public class RatMovement : MonoBehaviour
         rayDirection += fromPos;
         RaycastHit2D hitForward = Physics2D.Raycast(fromPos, rayDirection);
         Debug.DrawLine(fromPos, rayDirection, Color.green);
+        /*
         Debug.Log("Hit name: " + hitForward.transform.name 
         + ", Target Name: " + target.name
             + ", Target Timer: " + targetTimer
         + ", Can Jump: " + canJump);
+        */
         if (hitForward.transform.name.Equals(target.name)
                 && Mathf.Abs(hitForward.transform.position.x - transform.position.x) > 0.5f
                 && targetTimer <= 0.0f

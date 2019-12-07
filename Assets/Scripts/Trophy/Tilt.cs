@@ -120,7 +120,7 @@ public class Tilt : MonoBehaviour
     }
 
     void toggleIsFallen() {
-        float z = trophy.transform.rotation.eulerAngles.z;
+        float z = Mathf.Round(trophy.transform.rotation.eulerAngles.z);
 
         if ((z >= 0 && z <= 45) || (z <= 360 && z >= 315)) {
             isFallen = false;
