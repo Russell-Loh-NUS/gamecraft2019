@@ -41,20 +41,24 @@ public class RatMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
-        Vector2 fromPos = new Vector2(transform.position.x, transform.position.y + 0.8f);
+        Vector2 fromPos = new Vector2(transform.position.x, transform.position.y + 1.5f);
 
         Vector2 rayDirection = Vector2.left;
         if(currentX < 0) {
-            rayDirection = Vector2.left * 3.0f;
+            rayDirection = Vector2.left * 2.0f;
         }
         else if(currentX > 0){
-            rayDirection = Vector2.right * 3.0f;
+            rayDirection = Vector2.right * 2.0f;
         }
         rayDirection += fromPos;
         RaycastHit2D hitForward = Physics2D.Raycast(fromPos, rayDirection);
         Debug.DrawLine(fromPos, rayDirection, Color.green);
-        Debug.Log("Hit name: " + hitForward.transform.name + ", Target Name: " + target.name);
+        Debug.Log("Hit name: " + hitForward.transform.name 
+        + ", Target Name: " + target.name
+            + ", Target Timer: " + targetTimer
+        + ", Can Jump: " + canJump);
         if (hitForward.transform.name.Equals(target.name)
+                && Mathf.Abs(hitForward.transform.position.x - transform.position.x) > 0.5f
                 && targetTimer <= 0.0f
                 && canJump)
         {
