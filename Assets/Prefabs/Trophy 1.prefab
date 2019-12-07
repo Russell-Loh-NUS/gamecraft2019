@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5888590323888462979}
   - component: {fileID: 8065052989369966518}
   - component: {fileID: 5888590323888462977}
-  - component: {fileID: 5888590323888462983}
+  - component: {fileID: 1286464149}
   m_Layer: 0
   m_Name: Trophy 1
   m_TagString: Trophy
@@ -102,7 +102,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 3000
   m_LinearDrag: 0
-  m_AngularDrag: 0.0000001
+  m_AngularDrag: 0
   m_GravityScale: 0.5
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -135,7 +135,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5.12, y: 5.12}
   m_EdgeRadius: 0
---- !u!114 &5888590323888462983
+--- !u!114 &1286464149
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,7 +147,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aabe98eb01b220f4ca6d598d3ab25941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 500
+  trophy: {fileID: 2577115864685063455}
+  force: 600
+  isFallen: 0
 --- !u!1 &3017521140648912331
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,7 +571,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5888590322577397334}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.17, y: 2.24, z: 0}
+  m_LocalPosition: {x: 2.141, y: 2.311, z: 0}
   m_LocalScale: {x: 1.6186289, y: 0.5223566, z: 1}
   m_Children: []
   m_Father: {fileID: 2419570863534243392}

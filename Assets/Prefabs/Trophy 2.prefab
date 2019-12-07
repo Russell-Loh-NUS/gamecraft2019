@@ -408,7 +408,7 @@ GameObject:
   - component: {fileID: 6965173648670235926}
   - component: {fileID: 6844890625357340195}
   - component: {fileID: 6965173648670235924}
-  - component: {fileID: 6965173648670235922}
+  - component: {fileID: 1326499114}
   m_Layer: 0
   m_Name: Trophy 2
   m_TagString: Trophy
@@ -498,7 +498,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 3000
   m_LinearDrag: 0
-  m_AngularDrag: 0.0000001
+  m_AngularDrag: 0
   m_GravityScale: 0.5
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -531,7 +531,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5.12, y: 5.12}
   m_EdgeRadius: 0
---- !u!114 &6965173648670235922
+--- !u!114 &1326499114
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -543,7 +543,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aabe98eb01b220f4ca6d598d3ab25941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 500
+  trophy: {fileID: 7194213749636374241}
+  force: 600
+  isFallen: 0
 --- !u!1 &8102481550896039382
 GameObject:
   m_ObjectHideFlags: 0

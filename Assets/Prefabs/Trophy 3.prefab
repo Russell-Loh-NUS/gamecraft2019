@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 56246732203662335}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 82.09631, y: -0.61203533, z: -0.12262133}
+  m_LocalPosition: {x: -0.1, y: -0.61203533, z: -0.12262133}
   m_LocalScale: {x: 44.306602, y: 18.343016, z: 6}
   m_Children: []
   m_Father: {fileID: 5004322874893864465}
@@ -342,7 +342,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3672138829530729228}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 82.09631, y: 2.121075, z: -0.12262133}
+  m_LocalPosition: {x: -0.099998474, y: 2.121075, z: -0.12262133}
   m_LocalScale: {x: 31.01462, y: 12.84011, z: 4.2}
   m_Children: []
   m_Father: {fileID: 5004322874893864465}
@@ -566,7 +566,7 @@ GameObject:
   - component: {fileID: 5950379246785685847}
   - component: {fileID: 7095276467811433686}
   - component: {fileID: 5950379246785685845}
-  - component: {fileID: 5950379246785685843}
+  - component: {fileID: 2577115864801424626}
   m_Layer: 0
   m_Name: Trophy 3
   m_TagString: Trophy
@@ -581,7 +581,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6078963328331878299}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.257482, y: -1.4358037, z: -0.37737867}
   m_LocalScale: {x: 0.13542, y: 0.32709998, z: 1}
   m_Children:
@@ -656,7 +656,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 3000
   m_LinearDrag: 0
-  m_AngularDrag: 0.0000001
+  m_AngularDrag: 0
   m_GravityScale: 0.5
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -689,7 +689,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5.12, y: 5.12}
   m_EdgeRadius: 0
---- !u!114 &5950379246785685843
+--- !u!114 &2577115864801424626
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -701,4 +701,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aabe98eb01b220f4ca6d598d3ab25941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 500
+  trophy: {fileID: 6078963328331878299}
+  force: 600
+  isFallen: 0
