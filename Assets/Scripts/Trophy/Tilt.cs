@@ -7,6 +7,7 @@ public class Tilt : MonoBehaviour
 
     //game objects
     public GameObject trophy;
+    public AudioSource okSound;
     GameObject rightCircle;
     GameObject leftCircle;
 
@@ -120,9 +121,10 @@ public class Tilt : MonoBehaviour
         var p2 = transform.position;
 
         isMoving = (p1 != p2);
+        /*
         if (!isMoving) {
             GameObject.Find("Player").transform.GetChild(0).gameObject.SetActive(false);
-        }
+        }*/
     }
 
     void toggleIsFallen() {
