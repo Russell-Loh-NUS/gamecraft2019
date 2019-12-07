@@ -1586,7 +1586,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rat: {fileID: 6251843723948767298, guid: 30a70156070634c039684722c680e538, type: 3}
   ratSpawn: {fileID: 1488760844}
-  ratsSpawnRate: 7
+  ratsSpawnRate: 70
   canSpawn: 1
 --- !u!114 &799353901
 MonoBehaviour:
