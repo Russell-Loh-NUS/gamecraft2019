@@ -18,6 +18,7 @@ public class MenuActions : MonoBehaviour
         menuPanel.SetActive(false);
         manager.isGameStarted = true;
         startMenuParticle.Stop();
+        startMenuParticle.gameObject.SetActive(false);
     }
 
     public void RestartGame()

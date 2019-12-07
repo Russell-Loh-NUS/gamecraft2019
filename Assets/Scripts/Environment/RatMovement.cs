@@ -136,7 +136,7 @@ public class RatMovement : MonoBehaviour
     }
 
     private void RandomDirectionTimer() {
-        switchDirectionTimer = Random.Range(4.0f, 10.0f);
+        switchDirectionTimer = Random.Range(7.0f, 12.0f);
     }
 
     private void RandomTargetTimer() {
