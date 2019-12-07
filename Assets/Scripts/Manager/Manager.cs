@@ -10,6 +10,7 @@ public class Manager : Singleton<Manager>
     public Blindness blindness;
     public Spawner spawner;
     public GameObject resultPanel;
+    public GameObject startMenuParticle;
     public Text resultText;
     public Tilt[] trophiesTilt = new Tilt[3];
 

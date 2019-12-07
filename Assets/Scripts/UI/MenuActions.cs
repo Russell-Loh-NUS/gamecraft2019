@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class MenuActions : MonoBehaviour
 {
     public GameObject menuPanel;
+    public ParticleSystem startMenuParticle;
     public Blindness blindness;
     public Spawner spawner;
     public Manager manager;
@@ -16,6 +17,7 @@ public class MenuActions : MonoBehaviour
         spawner.enabled = true;
         menuPanel.SetActive(false);
         manager.isGameStarted = true;
+        startMenuParticle.Stop();
     }
 
     public void RestartGame()
