@@ -10,7 +10,6 @@ public class Manager : Singleton<Manager>
     public Blindness blindness;
     public Spawner spawner;
     public GameObject resultPanel;
-    public GameObject startMenuParticle;
     public Text resultText;
     public Tilt[] trophiesTilt = new Tilt[3];
 
@@ -59,7 +58,7 @@ public class Manager : Singleton<Manager>
             maxFrequency - 2.0f);
 
         float spawnRate = spawner.GetRate();
-        spawner.SetRate(spawnRate - 1.0f);
+        spawner.SetRate(spawnRate - 0.5f);
 
         currDifficulty++;
     }

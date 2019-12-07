@@ -54,7 +54,7 @@ public class Movement : MonoBehaviour
 
     private void MouseMovement() {
         bool playerOnLeft = (currentPos % 2) == 0;
-        if (Input.GetAxis("Mouse X") > 0 && playerOnLeft && Input.GetMouseButtonDown(0))
+        if (Input.GetAxis("Mouse X") > 0 && playerOnLeft && Input.GetMouseButton(0))
         {
             pushEffect.SetActive(true);
             pushSound.Play();
@@ -77,7 +77,7 @@ public class Movement : MonoBehaviour
             }
         }
 
-        if (Input.GetAxis("Mouse X") < 0 && !playerOnLeft && Input.GetMouseButtonDown(0))
+        if (Input.GetAxis("Mouse X") < 0 && !playerOnLeft && Input.GetMouseButton(0))
         {
             pushEffect.SetActive(true);
             pushSound.Play();
