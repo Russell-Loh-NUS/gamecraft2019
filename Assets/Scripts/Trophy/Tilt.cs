@@ -6,11 +6,11 @@ public class Tilt : MonoBehaviour
 {
 
     //game objects
-    GameObject trophy;
+    public GameObject trophy;
     GameObject rightCircle;
     GameObject leftCircle;
 
-    public float force = 1000000;
+    public float force = 600;
 
     //game componenets
     private Rigidbody2D trophyRigid;
@@ -19,10 +19,12 @@ public class Tilt : MonoBehaviour
     private Vector2 topLeft;
     private Vector2 topRight;
     private Vector2 originalPosition;
+    private Vector2 originalLeftCircle;
+    private Vector2 originalRightCircle;
 
     //flag
     private bool isMoving;
-    private bool isFallen;
+    public bool isFallen;
 
     private void Start() {
         trophy = gameObject;
@@ -33,6 +35,8 @@ public class Tilt : MonoBehaviour
         leftCircle = trophy.transform.GetChild(1).gameObject;
 
         originalPosition = trophy.transform.position;
+        originalRightCircle = rightCircle.transform.position;
+        originalLeftCircle = leftCircle.transform.position;
 
         //default values
         isFallen = false;
@@ -50,12 +54,27 @@ public class Tilt : MonoBehaviour
         }
     }
 
+    public void toppleLeftByRat(float force) {
+        Vector2 rightCircleVector = rightCircle.transform.position;
+        trophyRigid.AddForceAtPosition(Vector2.left * force * 1.5f, rightCircleVector);
+        isMoving = true;
+    }
+
+    public void toppleRightByRat(float force) {
+        Vector2 leftCircleVector = leftCircle.transform.position;
+        trophyRigid.AddForceAtPosition(Vector2.right * force, leftCircleVector);
+        isMoving = true;
+    }
+
     public void toppleLeft(int noOfHit) {
         for (int i = 0; i < noOfHit; i++) {
-            Rigidbody2D rigid2D = rightCircle.GetComponent<Rigidbody2D>();
-            Vector2 rightCircleVector = rigid2D.transform.position;
+            Vector2 rightCircleVector = rightCircle.transform.position;
+            Vector2 leftCircleVector = leftCircle.transform.position;
+            if (!(originalLeftCircle.x + 0.2 < leftCircleVector.x)) {
+                break;
+            }
 
-            trophyRigid.AddForceAtPosition(rightCircleVector * force, rightCircleVector);
+            trophyRigid.AddForceAtPosition(Vector2.left * force * 1.5f, rightCircleVector);
 
             isMoving = true;
         }
@@ -63,14 +82,24 @@ public class Tilt : MonoBehaviour
 
     public void toppleRight(int noOfHit) {
         for (int i = 0; i < noOfHit; i++) {
-            Rigidbody2D rigid2D = leftCircle.GetComponent<Rigidbody2D>();
-            Vector2 leftCircleVector = rigid2D.transform.position;
+            Vector2 leftCircleVector = leftCircle.transform.position;
+            Vector2 rightCircleVector = rightCircle.transform.position;
 
-            trophyRigid.AddForceAtPosition(-leftCircleVector * force, leftCircleVector);
+            if (!(leftCircleVector.x < originalLeftCircle.x - 0.2)) {
+                break;
+            }
+
+            trophyRigid.AddForceAtPosition(Vector2.right * force, leftCircleVector);
 
             isMoving = true;
         }
     }
+
+    bool isOriginalPosition(Vector2 currentPos, Vector2 originalPos) {
+        return currentPos == originalPos;
+    }
+
+
 
     void rectifyTrophyPosition() {
         if (!isFallen) {
@@ -95,5 +124,17 @@ public class Tilt : MonoBehaviour
         } else {
             isFallen = true;
         }
+    }
+
+    IEnumerator lowersCenterOfMass() {
+        float originalMass = trophyRigid.mass;
+        Vector2 originalCenterOfMass = trophyRigid.centerOfMass;
+
+        trophyRigid.mass = originalMass * 10000;
+        trophyRigid.centerOfMass = new Vector2(originalCenterOfMass.x, originalCenterOfMass.y - 2);
+        yield return new WaitForSeconds(0.1f);
+
+        trophyRigid.mass = originalMass;
+        trophyRigid.centerOfMass = originalCenterOfMass;
     }
 }

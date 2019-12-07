@@ -17,16 +17,17 @@ public class HitBox : MonoBehaviour
     }
 
     void OnCollisionEnter2D(Collision2D col) {
+        Debug.Log("HIT");
         Tilt parentScript = this.transform.parent.GetComponent<Tilt>();
 
         if (col.gameObject.CompareTag("Rat")) {
-            //Destroy(col.gameObject);
+            Destroy(col.gameObject);
             if (gameObject.name == "LeftRectangle") {
-                parentScript.toppleRight(18);
+                parentScript.toppleRightByRat(47000);
             }
 
             if (gameObject.name == "RightRectangle") {
-                parentScript.toppleLeft(18);
+                parentScript.toppleLeftByRat(47000);
             }
         }
     }
