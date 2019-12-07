@@ -57,6 +57,7 @@ public class Movement : MonoBehaviour
         if (Input.GetAxis("Mouse X") > 0 && playerOnLeft && Input.GetMouseButtonDown(0))
         {
             pushEffect.SetActive(true);
+            pushSound.Play();
             //trophy move right
             if (currentPos == 0) {
                 //get the first trophy and topple right
