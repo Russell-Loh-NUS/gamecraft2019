@@ -192,6 +192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17a0d5ac369d94534bf9782230d49b2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  noOfHits: 5
   positions:
   - {fileID: 0}
   - {fileID: 0}
@@ -199,3 +200,4 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  player: {fileID: 1451425172842873742}
