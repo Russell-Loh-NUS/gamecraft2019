@@ -6,6 +6,9 @@ public class Blindness : MonoBehaviour
 {
     public GameObject directionalLight;
     public float blinkRate = 0.1f;
+    public float maxFrequency = 30.0f;
+    public float minFrequency = 10.0f;
+    public bool canBlind = true;
 
     private float startBlindnessTimer;
     private float blindnessTimer;
@@ -24,13 +27,13 @@ public class Blindness : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(startBlindnessTimer > 0.0f && startBlindnessTimer <= 1.0f && !isBlind) {
+        if (startBlindnessTimer > 0.0f && startBlindnessTimer <= 1.0f && !isBlind && canBlind) {
             if (blinkTimer <= 0.0f) {
                 blinkTimer = Random.Range(blinkRate, blinkRate + 0.15f);
                 directionalLight.SetActive(!directionalLight.activeSelf);
             }
         }
-        else if (startBlindnessTimer <= 0.0f && !isBlind)
+        else if (startBlindnessTimer <= 0.0f && !isBlind && canBlind)
         {
             SetBlind(true);
             RandomBlindnessTimer();
@@ -45,6 +48,20 @@ public class Blindness : MonoBehaviour
         UpdateTimers();
     }
 
+    public void SetBlindnessFrequency(float minFrequency, float maxFrequency) {
+        this.minFrequency = minFrequency;
+        this.maxFrequency = maxFrequency;
+    }
+
+    public float GetMinBlindnessFrequency() {
+        return this.minFrequency;
+    }
+
+    public float GetMaxBlindnessFrequency()
+    {
+        return this.maxFrequency;
+    }
+
     private void UpdateTimers()
     {
         startBlindnessTimer -= Time.deltaTime;
@@ -54,7 +71,7 @@ public class Blindness : MonoBehaviour
 
     private void RandomStartBlindnessTimer()
     {
-        startBlindnessTimer = Random.Range(15.0f, 30.0f);
+        startBlindnessTimer = Random.Range(minFrequency, maxFrequency);
     }
 
     private void RandomBlindnessTimer()
