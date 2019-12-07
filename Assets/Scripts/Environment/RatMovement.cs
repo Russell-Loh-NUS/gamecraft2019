@@ -27,7 +27,8 @@ public class RatMovement : MonoBehaviour
         jumpSound = GetComponent<AudioSource>();
         RandomDirectionTimer();
         RandomTargetTimer();
-        target = targets[Random.Range(0, 2)];
+        target = targets[Random.Range(0, 3)];
+        Debug.Log(target.name);
     }
 
     // Update is called once per frame
@@ -40,13 +41,24 @@ public class RatMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
+        Vector2 fromPos = new Vector2(transform.position.x, transform.position.y + 0.8f);
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up);
-        if (!hit.collider.CompareTag("Trophy")
+        Vector2 rayDirection = Vector2.left;
+        if(currentX < 0) {
+            rayDirection = Vector2.left * 3.0f;
+        }
+        else if(currentX > 0){
+            rayDirection = Vector2.right * 3.0f;
+        }
+        rayDirection += fromPos;
+        RaycastHit2D hitForward = Physics2D.Raycast(fromPos, rayDirection);
+        Debug.DrawLine(fromPos, rayDirection, Color.green);
+        Debug.Log("Hit name: " + hitForward.transform.name + ", Target Name: " + target.name);
+        if (hitForward.transform.name.Equals(target.name)
                 && targetTimer <= 0.0f
-                && Mathf.Abs(target.transform.position.x - transform.position.x) < 1.5f
                 && canJump)
         {
+            Debug.Log("Jump");
             Jump();
         }
     }
@@ -122,6 +134,6 @@ public class RatMovement : MonoBehaviour
     }
 
     private void RandomTargetTimer() {
-        targetTimer = Random.Range(2.0f, 5.0f);
+        targetTimer = Random.Range(3.0f, 6.0f);
     }
 }
