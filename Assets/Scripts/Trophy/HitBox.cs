@@ -25,11 +25,11 @@ public class HitBox : MonoBehaviour
             col.gameObject.transform.GetChild(0).GetComponent<AudioSource>().Play();
             Destroy(col.gameObject, 0.4f);
             if (gameObject.name == "LeftRectangle") {
-                parentScript.toppleRightByRat(40000);
+                parentScript.toppleRightByRat(47000);
             }
 
             if (gameObject.name == "RightRectangle") {
-                parentScript.toppleLeftByRat(45000);
+                parentScript.toppleLeftByRat(47000);
             }
         }
     }

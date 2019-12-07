@@ -544,7 +544,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trophy: {fileID: 7194213749636374241}
-  force: 7000
+  force: 8000
   isFallen: 0
 --- !u!1 &8102481550896039382
 GameObject:
