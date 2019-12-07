@@ -23,7 +23,7 @@ public class HitBox : MonoBehaviour
         if (col.gameObject.CompareTag("Rat")) {
             col.gameObject.transform.GetChild(0).gameObject.SetActive(true);
             col.gameObject.transform.GetChild(0).GetComponent<AudioSource>().Play();
-            Destroy(col.gameObject, 0.4f);
+            Destroy(col.gameObject, 0.15f);
             if (gameObject.name == "LeftRectangle") {
                 parentScript.toppleRightByRat(47000);
             }
