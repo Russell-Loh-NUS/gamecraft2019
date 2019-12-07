@@ -16,6 +16,7 @@ public class Manager : Singleton<Manager>
     private AudioSource bgMusic;
     private AudioSource winMusic;
     private AudioSource loseMusic;
+    private bool isWin;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +26,7 @@ public class Manager : Singleton<Manager>
         bgMusic = GameObject.Find("BackgroundMusic").GetComponent<AudioSource>();
         winMusic = GameObject.Find("WinMusic").GetComponent<AudioSource>();
         loseMusic = GameObject.Find("LoseMusic").GetComponent<AudioSource>();
+        isWin = false;
     }
 
     // Update is called once per frame
@@ -51,7 +53,13 @@ public class Manager : Singleton<Manager>
     }
 
     public void GameEnd() {
-        resultText.text = "Your shift is secured!\nAt least for now...";
+        if (isWin)
+        {
+            resultText.text = "Your shift is secured!\nAt least for now...";
+        }
+        else {
+            resultText.text = "The sacred treasures were destroyed! You're FIRED!";
+        }
         blindness.canBlind = false;
         spawner.canSpawn = false;
         resultPanel.SetActive(true);
