@@ -42,6 +42,8 @@ public class Spawner : MonoBehaviour
     private void SpawnFirstMonsters() {
         Instantiate(rat, ratSpawn.transform.position, Quaternion.identity)
             .transform.SetParent(ratSpawn.transform);
+        Instantiate(rat, ratSpawn.transform.position + new Vector3(-2.5f, 0, 0), Quaternion.identity)
+            .transform.SetParent(ratSpawn.transform);
     }
 
     private void UpdateTimers() {
