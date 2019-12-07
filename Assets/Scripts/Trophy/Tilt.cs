@@ -70,9 +70,12 @@ public class Tilt : MonoBehaviour
         for (int i = 0; i < noOfHit; i++) {
             Vector2 rightCircleVector = rightCircle.transform.position;
             Vector2 leftCircleVector = leftCircle.transform.position;
+
+            /*
             if (!(originalLeftCircle.x + 0.2 < leftCircleVector.x)) {
                 break;
             }
+            */
 
             trophyRigid.AddForceAtPosition(Vector2.left * force * 1.5f, rightCircleVector);
 
@@ -81,13 +84,16 @@ public class Tilt : MonoBehaviour
     }
 
     public void toppleRight(int noOfHit) {
+        Debug.Log("ToPPLE RIGHTTTTTTTTTTTT");
         for (int i = 0; i < noOfHit; i++) {
             Vector2 leftCircleVector = leftCircle.transform.position;
             Vector2 rightCircleVector = rightCircle.transform.position;
 
+            /*
             if (!(leftCircleVector.x < originalLeftCircle.x - 0.2)) {
                 break;
             }
+            */
 
             trophyRigid.AddForceAtPosition(Vector2.right * force, leftCircleVector);
 
